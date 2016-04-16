@@ -112,10 +112,6 @@ static php_process_env_t _php_array_to_envp(zval *environment, int is_persistent
 		size_t el_len = ZSTR_LEN(str);
 		zend_string_release(str);
 
-		if (el_len == 0) {
-			continue;
-		}
-
 		sizeenv += el_len + 1;
 
 		if (string_key) {
@@ -133,10 +129,6 @@ static php_process_env_t _php_array_to_envp(zval *environment, int is_persistent
 
 	ZEND_HASH_FOREACH_STR_KEY_VAL(target_hash, string_key, element) {
 		zend_string *str = zval_get_string(element);
-
-		if (ZSTR_LEN(str) == 0) {
-			goto next_element;
-		}
 
 		if (string_key) {
 			if (ZSTR_LEN(string_key) == 0) {
