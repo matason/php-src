@@ -124,9 +124,6 @@ static php_process_env_t _php_array_to_envp(zval *environment, int is_persistent
 		} else {
 			el_len = Z_STRLEN_PP(element);
 		}
-		if (el_len == 0) {
-			continue;
-		}
 
 		sizeenv += el_len+1;
 
@@ -158,10 +155,6 @@ static php_process_env_t _php_array_to_envp(zval *environment, int is_persistent
 		}
 
 		el_len = Z_STRLEN(tmp);
-
-		if (el_len == 0) {
-			goto next_element;
-		}
 
 		data = Z_STRVAL(tmp);
 		switch (zend_hash_get_current_key_ex(target_hash, &string_key, &string_length, &num_key, 0, &pos)) {
